@@ -1,0 +1,32 @@
+
+
+EFFECTS:
+- variables for effects (size, etc)
+- combo effects (cannon
+- explosion should look better, inner should turn red towards end of blast
+
+
+
+INTERFACE:
+- load and draw background images for each section of interface.
+- load in different castle illistrations.
+- load in images for equipment.
+- load button images.
+
+- put call in to update the castles stats.
+- draw the different amounts of coal, water, health, steam.
+- draw the message box text.
+- draw the buttons load, save, quit, 
+
+
+front screen.
+  - start game.
+  - select level.
+  - news.
+  - load.
+  - save.
+  - download levels.
+
+
+
+

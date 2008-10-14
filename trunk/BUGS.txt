@@ -1,0 +1,43 @@
+
+
+
+Crash BUGS:
+********************
+
+
+
+
+********************
+Game play bugs.
+
+- when a cannon ball hits a wall it does not do an area of affect explosion.  Which means if a peasant is nearby it will kill them.  Same if it hits a cannon tower.
+
+- upgrades between levels.
+    if you play a level and get some upgrades
+    <philhassey> and then you press escape on the map to "quit" the game 
+    <philhassey> and then go back to the map to start a new game and start playing a level, you still have your upgrades.
+    <philhassey> you probably need to add a line of code to main.py:reset() so that it resets the castle...
+    <philhassey> data_reset() that is
+
+- level select.
+    - when all levels on bottom are done, and all but far right on second level are done it doesn't work.
+
+
+
+
+********************
+Graphic bugs.
+
+- pink around cannon ball.
+- pink around bottom of castle.
+
+- need a normal mouse cursor graphic.  because of set_visible bugs.
+
+
+
+********************
+Sound bugs.
+
+
+
+
