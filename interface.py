@@ -54,18 +54,27 @@ class StatsDraw:
         if astat == "Health":
             # show the heart every pulse every half a second or so.
             if self.frames_health > (FPS / 2):
-                s = self.images['heart.png'].subsurface(clip_rect)
+                k = 'heart.png'
                 if self.frames_health > FPS:
                     self.frames_health = 0
             else:
-                s = self.images['heart_pulse.png'].subsurface(clip_rect)
+                k = 'heart_pulse.png' 
+
+            im = self.images[k]
+            c = clip_rect.clip(im.get_rect())
+            if not c.width and not c.height:
+                s = None
+            else:
+                print im,c
+                s = im.subsurface(c)
+
         else:
             raise "not implemented for this stat"
 
         draw_rect = pygame.Rect(where_rect)
         draw_rect.y += diff
-
-        screen.blit(s, draw_rect)
+        if s:
+            screen.blit(s, draw_rect)
         return where_rect
 
 

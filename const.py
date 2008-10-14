@@ -8,58 +8,75 @@ Tweakable files (other) :
 
 
 import pygame
+# the base size.
+BSW,BSH = 640,480
 SW,SH = 640,480
+SW,SH = 800,600
+
+DX = float(SW) / BSW
+DY = float(SH) / BSH
+
+dxdy = (DX, DY)
 
 FPS = 30
 
 MIN_CANNON_PRESSURE = 6
 
+def multr(dx_dy, r):
+    a,b,c,d = tuple(r)
+    dx,dy = dxdy
+    return pygame.Rect(a*dx, b*dy, c*dx, d*dy)
+    
+
 #S_VIEW = pygame.Rect(0,0,480,480)
 
 
-S_STATUS = pygame.Rect(480,320,400,160)
+S_STATUS = multr( dxdy, (480,320,400,160))
 
-S_ITEMS = pygame.Rect(480,160,160,200)
-S_STATUS = pygame.Rect(480,360,160,120)
+S_ITEMS = multr( dxdy, (480,160,160,200))
+S_STATUS = multr( dxdy, (480,360,160,120))
 
 
 
 
 # game view area.
-S_VIEW = pygame.Rect(76,0,380,340)
+S_VIEW = multr( dxdy, (76,0,380,340))
 
 
 # left side, full status area.
-S_STATUS = pygame.Rect(0,0,76,340)
+S_STATUS = multr( dxdy, (0,0,76,340) )
 
 
 # left side status boxes.
 #S_HEALTH = pygame.Rect(10,30,60,70)
-S_HEALTH = pygame.Rect(10,4,60,96)
-S_COAL   = pygame.Rect(10,100,60,70)
-S_WATER  = pygame.Rect(10,190,60,70)
-S_STEAM  = pygame.Rect(10,260,60,70)
+S_HEALTH = multr( dxdy, (10,4,60,96) )
+S_COAL   = multr( dxdy, (10,100,60,70) )
+S_WATER  = multr( dxdy, (10,190,60,70) )
+S_STEAM  = multr( dxdy, (10,260,60,70) )
 
-S_PEASANTS_REMAINING = pygame.Rect(487,24,122,114)
-S_CANNON_PRESSURE = pygame.Rect(76,0,5,340)
+S_PEASANTS_REMAINING = multr( dxdy, (487,24,122,114) )
+S_CANNON_PRESSURE = multr( dxdy, (76,0,5,340) )
 
 
 
 
 
 # top right,  castle robot illustration area.
-S_ROBOT = pygame.Rect(456,0,184,163)
+S_ROBOT = multr( dxdy, (456,0,184,163) )
 
 
 # middle right, items area.
-S_ITEMS = pygame.Rect(456,163,184,177)
+S_ITEMS = multr( dxdy, (456,163,184,177) )
 
 
-S_ITEMS_ENGINE = pygame.Rect(480,160,160,160)
-S_ITEMS_COALSTORAGEROOM = pygame.Rect(480,160,160,160)
-S_ITEMS_WATERTANK = pygame.Rect(480,160,160,160)
-S_ITEMS_CANNON = pygame.Rect(480,160,160,160)
-S_ITEMS_ARMOUR = pygame.Rect(480,160,160,160)
+S_ITEMS_ENGINE = multr( dxdy, (480,160,160,160) )
+S_ITEMS_COALSTORAGEROOM = multr( dxdy, (480,160,160,160) )
+S_ITEMS_WATERTANK = multr( dxdy, (480,160,160,160) )
+S_ITEMS_CANNON = multr( dxdy, (480,160,160,160) )
+S_ITEMS_ARMOUR = multr( dxdy, (480,160,160,160) )
+
+
+
 
 # bottom right,  button area.
 S_BUTTONS = pygame.Rect(470,340,170,140)
@@ -71,13 +88,20 @@ S_BUTTONS_NEWS = pygame.Rect(560,420,60,40)
 
 S_BOTTOM = pygame.Rect(0,340,640,140)
 
-S_BOTTOM_BUTTONS = pygame.Rect(470,0,170,140)
-S_BOTTOM_MESSAGES = pygame.Rect(95,25,355,110)
+S_BUTTONS, S_BUTTONS_SAVE, S_BUTTONS_LOAD, S_BUTTONS_QUIT, S_BUTTONS_NEWS, S_BOTTOM, = map(lambda x:multr(dxdy, x), [S_BUTTONS, S_BUTTONS_SAVE, S_BUTTONS_LOAD, S_BUTTONS_QUIT, S_BUTTONS_NEWS, S_BOTTOM])
+
+
+
+
+
+
+S_BOTTOM_BUTTONS = multr(dxdy, (470,0,170,140))
+S_BOTTOM_MESSAGES = multr(dxdy, (95,25,355,110))
 # bottom middle message area.
-S_MESSAGES = pygame.Rect(95,365,355,110)
+S_MESSAGES = multr(dxdy, (95,365,355,110))
 
 #S_NEXT_LEVEL_MESSAGES = pygame.Rect(20,165,380,410)
-S_NEXT_LEVEL_MESSAGES = pygame.Rect(20,20,500,410)
+S_NEXT_LEVEL_MESSAGES = multr( dxdy, (20,20,500,410))
 
 
 
