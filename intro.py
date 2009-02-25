@@ -34,7 +34,7 @@ data = [
 class Intro(engine.State):
     
     def init(self):
-           
+        
         #rev up music...
         if pygame.mixer:
             pygame.mixer.music.load(os.path.join("data","intro","intro1.ogg"))
@@ -62,6 +62,7 @@ class Intro(engine.State):
         
         pygame.mouse.set_visible(False)
         
+
     def paint(self,screen):
         return
         #screen.fill((0,0,0))
