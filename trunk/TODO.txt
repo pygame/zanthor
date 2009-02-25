@@ -1,14 +1,19 @@
 
 
 - scaling the of the interface nicely.
-    - scale images up.
-- when hit by cannon ball, chunks should go in the direction of the thing.
+    - the health/steam tank/coal tank etc are not scaling correctly.
+
+- replace heart graphics
+    - always show outline of heart shape.
+    - always show outline of all the stats... 
+        - so people know where the top is.
+
+- when hit by cannon ball, chunks should go in the direction of the ball.
+    - plus chunks flying elsewhere a little would please ZANTHOR.
 - little words above top right peasant box explaining what it is.
 - firing with space bar should follow mouse?  
     - If mouse has moved in the last while, then follow mouse.
         - for keyboard movement.
-DONE - replace heart graphics
-
 
 
 

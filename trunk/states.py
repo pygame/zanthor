@@ -103,6 +103,9 @@ class NextLevel(engine.State):
 
         self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
         self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),20)
+
+        screen_size = pygame.display.get_surface().get_size()
+        self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
         
         self.cmds = []
 
