@@ -3,6 +3,7 @@ from pygame.locals import *
 from const import *
 #import pygame.draw
 
+import util
 
 import os
 from pgu import engine
@@ -37,18 +38,14 @@ data = [
     (0,pygame.Rect(487, 273+iy, 121, 135),'Congenial Burg',225,'level4.tga',80,     "Zanthor's Rec Room",'soundtrack1.ogg', (2,3)),
     ]
 
-def scale_rect(r, sw, sh):
-    return pygame.Rect( map(int, [r[0] * sw, r[1] * sh, r[2] * sw, r[3] * sh]))
 
 def scale_data(data, size):
 
-    width, height = size
-    sw = width / 640.
-    sh = height / 480.
-    
+    orig_size = 640,480
     new_data = []
     for d in data:
-        new_data.append(  [d[0], scale_rect(d[1], sw, sh)] + list(d[2:])  )
+        part = [d[0], util.scale_rect(d[1], orig_size, size)] + list(d[2:])
+        new_data.append( part )
     
     return new_data
 

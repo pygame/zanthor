@@ -3,9 +3,11 @@ from pygame.locals import *
 import os
 import random
 
+
 import pygame.draw
 
 
+import util
 from pgu import gui
 
 #import pgu.html
@@ -261,6 +263,26 @@ class Interface:
                     self.images[i] = self.images[i].convert()
             else:
                 self.images[i] = None
+
+
+        def scale_images(images):
+            screen_size = pygame.display.get_surface().get_size()
+            #scaler = pygame.transform.smoothscale
+            scaler = pygame.transform.scale
+            new_images = {}
+
+            orig_size = 640,480
+            for i,surf in images.items():
+                if images[i]:
+                    r = surf.get_rect()
+                    size_scale = util.scale_rect(r, orig_size, screen_size)[2:]
+
+                    new_images[i] = scaler( surf, size_scale)
+                else:
+                    new_images[i] = surf
+            return new_images
+
+        self.images = scale_images(self.images)
 
 
         self.bkgrb = pygame.Surface((S_BOTTOM_MESSAGES.w, S_BOTTOM_MESSAGES.h) )
