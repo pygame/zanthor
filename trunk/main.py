@@ -12,10 +12,24 @@ import os,sys,time,copy
 import pygame
 from pygame.locals import *
 
+
+
+
+
 from pgu import engine
 from pgu import timer
 
 from const import *
+
+if 0:
+    # this can be used to figure out how big the desktop is...
+    pygame.display.init()
+    screen = pygame.display.set_mode((0,0))
+    SW, SH = screen.get_size()
+    import const
+    const.SW, const.SH = screen.get_size()
+
+
 
 import states
 import level
