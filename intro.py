@@ -135,7 +135,8 @@ class Intro(engine.State):
         
     
     def event(self,e):
-        if e.type in [KEYDOWN, MOUSEBUTTONDOWN, JOYBUTTONDOWN]:
+        #if e.type in [KEYDOWN, MOUSEBUTTONDOWN, JOYBUTTONDOWN]:
+        if e.type in [KEYDOWN, JOYBUTTONDOWN]:
             if pygame.mixer:
                 pygame.mixer.music.stop()
             import title
