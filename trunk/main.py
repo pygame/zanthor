@@ -116,6 +116,8 @@ def main(no_intro = 0, the_level = 0):
     pygame.display.set_caption("The Wrath of ZANTHOR") #It's powered by steam!")
 
     #flags = FULLSCREEN
+    print flags
+    print (SW,SH)
     screen = pygame.display.set_mode((SW,SH), flags)
 
 

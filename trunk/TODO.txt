@@ -1,5 +1,23 @@
 
 
+- scaling the of the interface nicely.
+    - scale images up.
+- when hit by cannon ball, chunks should go in the direction of the thing.
+- little words above top right peasant box explaining what it is.
+- firing with space bar should follow mouse?  
+    - If mouse has moved in the last while, then follow mouse.
+        - for keyboard movement.
+DONE - replace heart graphics
+
+
+
+
+
+==============
+
+
+
+
 EFFECTS:
 - variables for effects (size, etc)
 - combo effects (cannon
