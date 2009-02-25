@@ -37,6 +37,24 @@ data = [
     (0,pygame.Rect(487, 273+iy, 121, 135),'Congenial Burg',225,'level4.tga',80,     "Zanthor's Rec Room",'soundtrack1.ogg', (2,3)),
     ]
 
+def scale_rect(r, sw, sh):
+    return pygame.Rect( map(int, [r[0] * sw, r[1] * sh, r[2] * sw, r[3] * sh]))
+
+def scale_data(data, size):
+
+    width, height = size
+    sw = width / 640.
+    sh = height / 480.
+    
+    new_data = []
+    for d in data:
+        new_data.append(  [d[0], scale_rect(d[1], sw, sh)] + list(d[2:])  )
+    
+    return new_data
+
+
+
+
 """
 32, 237, 144,  135
 176, 273, 125, 135
@@ -54,6 +72,13 @@ class Menu(engine.State):
     
     def init(self):
         self.bkgr = pygame.image.load(os.path.join("data","gfx","caastles.png")).convert()
+
+        screen_size = pygame.display.get_surface().get_size()
+        self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
+        
+        self.scaled_data = scale_data(data, screen_size)
+
+
         #rev up music...
         
         self.fonts = {}
@@ -113,12 +138,12 @@ class Menu(engine.State):
         
         done = self.done
         img = self.ximg
-        for lock,r,title,pop,n,perc,ztitle,music, selected in data:
+        for lock,r,title,pop,n,perc,ztitle,music, selected in self.scaled_data:
             if n in done:
                 screen.blit(img,(r.x+(r.w-img.get_width())/2,r.y+(r.h-img.get_height())/2))
 
         # selected is the row/collum of that city.
-        for lock,r,title,pop,n,perc,ztitle,music, selected in data:
+        for lock,r,title,pop,n,perc,ztitle,music, selected in self.scaled_data:
             #pygame.draw.rect(screen, (0,0,0), r, 1)
             
             
@@ -197,7 +222,7 @@ class Menu(engine.State):
         #print tobe
 
         found = False
-        for d in data:
+        for d in self.scaled_data:
             levellock = d[0]
             pos_of_place = d[8]
             n = d[4]
@@ -255,7 +280,7 @@ class Menu(engine.State):
     
     def event(self,e):
         if e.type is MOUSEMOTION:
-            for lock,r,title,pop,n,perc,ztitle,music, selected in data:
+            for lock,r,title,pop,n,perc,ztitle,music, selected in self.scaled_data:
                 if r.collidepoint(e.pos):
                     self.show_selected = True
                     self.set_selected_parts(selected)
