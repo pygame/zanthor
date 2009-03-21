@@ -53,6 +53,8 @@ class StatsDraw:
         diff = where_rect.h - int(height)
         clip_rect.y += diff
 
+        im_border = None
+
         if astat == "Health":
             # show the heart every pulse every half a second or so.
             if self.frames_health > (FPS / 2):
@@ -63,6 +65,12 @@ class StatsDraw:
                 k = 'heart_pulse.png' 
 
             im = self.images[k]
+
+            if not self.images.has_key(k + "laplacian"):
+                self.images[k + "laplacian"] = pygame.transform.laplacian(im)
+
+            im_border = self.images[k + "laplacian"]
+
             c = clip_rect.clip(im.get_rect())
             if not c.width and not c.height:
                 s = None
@@ -72,11 +80,15 @@ class StatsDraw:
 
         else:
             raise "not implemented for this stat"
-
+        
         draw_rect = pygame.Rect(where_rect)
         draw_rect.y += diff
         if s:
             screen.blit(s, draw_rect)
+            
+        if im_border:
+            screen.blit(im_border, where_rect)
+            
         return where_rect
 
 
