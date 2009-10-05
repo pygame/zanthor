@@ -425,6 +425,10 @@ class Level:
             self.interface.stats_draw.robots_total = vv
             #self.interface.dirty['background_illustration'] = 1
             self.interface.stats_draw.robots_update = 1
+
+
+
+        #
         interface_rects = self.interface.update(tv, screen)
         self.interface.stats_draw.robots_update = 0
         updates.extend(interface_rects)
