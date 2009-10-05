@@ -543,7 +543,7 @@ class Level:
 
         self.tv.castle.event(self.tv,e)
         
-        if e.type is KEYDOWN and e.key in (K_RETURN,K_p):
+        if e.type is KEYDOWN and e.key in (K_RETURN,K_p, K_h):
             import states
             return states.Pause(self.game,"pause",self)
         

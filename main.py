@@ -127,7 +127,8 @@ def main(no_intro = 0, the_level = 0):
 
     pygame.init()
     pygame.font.init()
-    pygame.display.set_caption("The Wrath of ZANTHOR") #It's powered by steam!")
+    #pygame.display.set_caption("The Wrath of ZANTHOR") #It's powered by steam!")
+    pygame.display.set_caption("The Wrath of ZANTHOR!  It's powered by steam!  h key for help")
 
     #flags = FULLSCREEN
     print flags

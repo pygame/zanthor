@@ -1,7 +1,4 @@
 
-- scaling the interface nicely.
-    - dying screen is not scaled.
-
 - tell people what to do.
     - squash peasants, shoot them, collect coal + water to make steam.
 
