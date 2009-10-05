@@ -275,9 +275,10 @@ class Pause(engine.State):
         self.game,self.text,self.state = game,text,state
         
     def init(self):
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+        #self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),20)
 
-    def paint(self,screen):
+    def paint_old(self,screen):
         img = self.font.render(self.text,1,(0,0,0))
         x,y = (SW-img.get_width())/2,(SH-img.get_height())/2
         b = 2
@@ -286,6 +287,36 @@ class Pause(engine.State):
         img = self.font.render(self.text,1,(255,255,255))
         screen.blit(img,(x,y))
         pygame.display.flip()
+
+
+    def paint(self,screen):
+
+        text = [
+            'Pause',
+            'Collect coal, and water to make steam.',
+            'Zanthor must squash all the peasants ',
+            '    to get to the next level.',
+            'Move with asdw or arrow keys... ',
+            '    or joystick, or mouse right click.',
+            'Shoot with mouse click(left) or space bar.'
+            '',
+            ]
+        
+        fnt = self.font
+        x,y = 48,20
+        height = 90
+        width = 80*4
+        #x,y = (SW-width)/2,(SH-height)/2
+        x,y = (SW-width)/2, 30
+        x,y = (SW-width)/4, 30
+
+        for line in text:
+            pgu.text.write(screen,fnt,(x,y),(255,255,255),line,1)
+            y += 36
+
+        pygame.display.flip()
+
+
 
     def event(self,e):
         if e.type is KEYDOWN or e.type is MOUSEBUTTONDOWN:
