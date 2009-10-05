@@ -109,6 +109,8 @@ class StatsDraw:
         draw_rect.h = int(height)
         draw_rect.y += where_rect.h - draw_rect.h
 
+        #draw_rect = multr( dxdy, draw_rect)
+
         s = screen.subsurface(draw_rect)
         s.fill(color)
         return where_rect
@@ -121,6 +123,9 @@ class StatsDraw:
 
         #return []
 
+        self.interface.dirty['left_background'] = 1
+        self.interface.update_left_background(screen)
+
         stat_rect={}
         stat_rect['Health'] = S_HEALTH
         stat_rect['Coal'] = S_COAL
@@ -131,7 +136,7 @@ class StatsDraw:
         stat_color={}
         stat_color['Health'] = (255,0,0)
         stat_color['Coal'] = (0,0,0)
-        stat_color['Water'] = (0,0,255)        
+        stat_color['Water'] = (0,0,255)
         stat_color['Steam'] = (200,200,200)
         stat_color['CannonPressure'] = (100,100,200)
 
@@ -151,12 +156,14 @@ class StatsDraw:
             min =0
             max = int(stats["Max" + astat])
             current = int(stats[astat])
+            #print where_rect
 
             #only draw the screen where the rectangle will be drawn.
-            c = screen.get_clip()
-            screen.set_clip(where_rect)
-            screen.blit( self.images["background_status_left.png"], S_STATUS)
-            screen.set_clip(c)
+            if 0:
+                c = screen.get_clip()
+                screen.set_clip(where_rect)
+                screen.blit( self.images["background_status_left.png"], S_STATUS)
+                screen.set_clip(c)
 
             if astat in ['Health']:
                 r = self.draw_img(screen, min, max, current, color, where_rect, astat)
@@ -218,6 +225,7 @@ class Interface:
 
         self.stats = {}
         self.stats_draw = StatsDraw()
+        self.stats_draw.interface = self
 
         self.equipment_last_message = ""
         self.equipment_message = ""
@@ -325,6 +333,7 @@ class Interface:
         #TODO: handle button clicks.
         if e.type == MOUSEBUTTONDOWN:
             x,y = e.pos
+            print x,y
 
             if S_BUTTONS_SAVE.collidepoint(x, y):
                 print "save"
