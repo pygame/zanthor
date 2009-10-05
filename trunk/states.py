@@ -18,6 +18,8 @@ import pgu.text
 import html
 import messages
 from const import *
+import util
+
 
 class SPause(engine.State):
     def __init__(self,game,state):
@@ -34,6 +36,16 @@ class GameOver(engine.State):
     def init(self):
         self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
         self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+
+        screen_size = pygame.display.get_surface().get_size()
+        orig_size = 640,480
+
+        scaler = pygame.transform.scale
+
+        r = self.bkgr.get_rect()
+        size_scale = util.scale_rect(r, orig_size, screen_size)[2:]
+        self.bkgr = scaler(self.bkgr, size_scale)
+
 
     def paint(self,screen):
         screen.blit(self.bkgr,(0,0))

@@ -433,6 +433,7 @@ class Level:
         self.interface.stats_draw.robots_update = 0
         updates.extend(interface_rects)
         
+
         if self.hair_update != None:
             updates.append(self.hair_update)
             self.hair_update = None
