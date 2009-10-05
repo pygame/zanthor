@@ -1,18 +1,9 @@
 
-- nicer water graphic
-
-- scaling the of the interface nicely.
-    - the health/steam tank/coal tank etc are not scaling correctly.
+- scaling the interface nicely.
+    - dying screen is not scaled.
 
 - tell people what to do.
     - squash peasants, shoot them, collect coal + water to make steam.
-
-- replace heart graphics
-    - always show outline of heart shape.
-    - always show outline of all the stats... 
-        - so people know where the top is.
-
-- make cannon tower graphics.
 
 - docs for level building.
 
