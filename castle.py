@@ -208,7 +208,7 @@ class CastleSprite(isovid.Sprite):
             #print epos
             #print "sx:%s  sy:%s" % (sx, sy)
         
-        if e.type is MOUSEBUTTONDOWN and e.button == 1:
+        if e.type is MOUSEBUTTONDOWN and e.button == 3:
             tx,ty = g.screen_to_tile(epos)
             #print 'left',tx,ty
             w,h = g.size
@@ -222,12 +222,12 @@ class CastleSprite(isovid.Sprite):
         #print e   
 #        if (e.type is MOUSEBUTTONDOWN and e.button == 3 or 
 #            e.type == JOYBUTTONDOWN and e.button ==JOY_FIRE_BUTTON):
-        if (e.type is MOUSEBUTTONDOWN and e.button == 3):
+        if (e.type is MOUSEBUTTONDOWN and e.button == 1):
 
             # use up some steam in order to fire.
             self.unit.prep_fire()
                 
-        if (e.type is MOUSEBUTTONUP and e.button == 3):
+        if (e.type is MOUSEBUTTONUP and e.button == 1):
             tx,ty = g.screen_to_tile(epos)
             #print 'right',tx,ty
             
