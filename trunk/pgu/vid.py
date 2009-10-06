@@ -416,8 +416,7 @@ class Vid:
             s._rect = pygame.Rect(s.rect)
         
     def loop_sprites(self):
-        as = self.sprites[:]
-        for s in as:
+        for s in self.sprites[:]:
             if hasattr(s,'loop'):
                 s.loop(self,s)
 
@@ -427,8 +426,7 @@ class Vid:
 
         layer = self.layers[0]
 
-        as = self.sprites[:]
-        for s in as:
+        for s in self.sprites[:]:
             self._tilehits(s)
     
     def _tilehits(self,s):
@@ -514,12 +512,11 @@ class Vid:
 
 
     def loop_spritehits(self):
-        as = self.sprites[:]
-        
+        as_sprites = self.sprites[:]
         groups = {}
         for n in range(0,31):
             groups[1<<n] = []
-        for s in as:
+        for s in as_sprites:
             g = s.groups
             n = 1
             while g:
@@ -527,7 +524,7 @@ class Vid:
                 g >>= 1
                 n <<= 1
                 
-        for s in as:
+        for s in as_sprites:
             if s.agroups!=0:
                 rect1,rect2 = s.rect,Rect(s.rect)
                 #if rect1.centerx < 320: rect2.x += 640
