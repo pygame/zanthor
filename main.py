@@ -1,10 +1,11 @@
-try:
-    #0/0 #HACK: so i can CTRL-c out
-    import psyco
-    psyco.profile()
-    print 'psyco installed'
-except:
-    print 'psyco not installed'
+if 0:
+    try:
+        #0/0 #HACK: so i can CTRL-c out
+        import psyco
+        psyco.profile()
+        print 'psyco installed'
+    except:
+        print 'psyco not installed'
 
 import os,sys,time,copy
 
@@ -124,6 +125,8 @@ class Game(engine.Game):
 
 def main(no_intro = 0, the_level = 0):
     global flags
+
+    pygame.mixer.pre_init(22050, -16, 2, 1024)
 
     pygame.init()
     pygame.font.init()
