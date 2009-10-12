@@ -10,6 +10,7 @@ from pgu import engine
 import pgu.text
 
 from const import *
+import util
 import random
 
 class Title(engine.State):
@@ -163,6 +164,8 @@ class Help(engine.State):
         
 class Credits(engine.State):
     def paint(self,screen):
+        screen.fill((255,0,0))
+
         screen.blit(pygame.image.load(os.path.join("data","intro","mybkgr.png")),(0,0))
         text = [
             'credits',
