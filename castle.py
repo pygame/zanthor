@@ -757,8 +757,11 @@ def cball_new(g,pos,dest, damage = 1.0,pressure=16):
     
     
 def cball_loop(g,s):
-    
-    s.rect.x += s.vx
+    try
+        s.rect.x += s.vx
+    except AttributeError: 
+        return
+
     s.rect.y += s.vy
     s.z += s.vz
     s.vz += 1
