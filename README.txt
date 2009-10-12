@@ -5,7 +5,7 @@ http://www.imitationpickles.org/pyweek2/
 main.py
 
 KEYBOARD: arrows or wasd - to move. F10 pause. f/space/ctrl to fire.
-MOUSE:    button one move.  button two fire.
+MOUSE:    button one fire.  button two move.
 JOYSTICK: game pad move.  button 1 fire.
 
                                  We love you.
