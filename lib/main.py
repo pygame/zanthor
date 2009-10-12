@@ -123,7 +123,7 @@ class Game(engine.Game):
 
 
 
-def main(no_intro = 0, the_level = 0):
+def do_main(no_intro = 0, the_level = 0):
     global flags
 
     pygame.mixer.pre_init(22050, -16, 2, 1024)
@@ -185,9 +185,9 @@ def main(no_intro = 0, the_level = 0):
     
 
 
-if __name__ == '__main__':
+def main():
+    global flags
 
-        
     if 'speed' in sys.argv:
         FPS = 65535
 
@@ -224,7 +224,7 @@ if __name__ == '__main__':
         profile_data_fname = tempfile.mktemp("prf")
         try:
             prof = hotshot.Profile(profile_data_fname)
-            prof.run('main(no_intro, the_level = the_level)')
+            prof.run('do_main(no_intro, the_level = the_level)')
             del prof
             s = hotshot.stats.load(profile_data_fname)
             s.strip_dirs()
@@ -242,6 +242,6 @@ if __name__ == '__main__':
                 pass
     else:
         try:
-            main(no_intro, the_level = the_level)
+            do_main(no_intro, the_level = the_level)
         except:
             traceback.print_exc(sys.stderr)

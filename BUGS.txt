@@ -19,17 +19,10 @@ Game play bugs.
     <philhassey> you probably need to add a line of code to main.py:reset() so that it resets the castle...
     <philhassey> data_reset() that is
 
-- level select.
-    - when all levels on bottom are done, and all but far right on second level are done it doesn't work.
-
-
 
 
 ********************
 Graphic bugs.
-
-- pink around cannon ball.
-- pink around bottom of castle.
 
 - need a normal mouse cursor graphic.  because of set_visible bugs.
 
