@@ -1,5 +1,6 @@
 
-
+resolution selection
+    - at least detect the size of the desktop.
 
 Crash BUGS:
 ********************
