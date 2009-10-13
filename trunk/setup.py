@@ -167,8 +167,7 @@ if cmd == 'cx_freeze':
         shutil.rmtree( os.path.join(data_dir, "tcl") )
     if os.path.exists(os.path.join(data_dir, "tk")): 
         shutil.rmtree( os.path.join(data_dir, "tk") )
-    sys_cmd = "cd dist; tar -vczf %s.tgz %s/" % (app_dist_dir,app_dist_dir)  
-    os.system(sys_cmd)
+
 
 
 # recursively make a bunch of folders
@@ -192,6 +191,12 @@ if cmd in ('py2exe','cx_freeze','py2app'):
         if not os.path.isdir(fname):
             #print (fname,dname)
             shutil.copy(fname,dname)
+
+# make a tgz files.
+if cmd == 'cx_freeze':
+    sys_cmd = "cd dist; tar -vczf %s.tgz %s/" % (app_dist_dir,app_dist_dir)  
+    os.system(sys_cmd)
+
 
 # remove files from the zip.
 if 0 and cmd in ('py2exe'):
