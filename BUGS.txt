@@ -3,7 +3,21 @@
 
 Crash BUGS:
 ********************
+linux exe... works after installing numpy.
 
+enoch@rikiki:~/Bureau/Zanthor_linux_1.1$ ./Zanthor 
+Traceback (most recent call last):
+  File "/usr/lib/pymodules/python2.6/cx_Freeze/initscripts/Console.py", line 29, in <module>
+  File "run_game.py", line 4, in <module>
+  File "lib/main.py", line 13, in <module>
+  File "/usr/local/lib/python2.6/dist-packages/pygame/__init__.py", line 254, in <module>
+  File "/usr/local/lib/python2.6/dist-packages/pygame/sndarray.py", line 66, in <module>
+  File "/usr/local/lib/python2.6/dist-packages/pygame/_numpysndarray.py", line 38, in <module>
+  File "/usr/lib/python2.6/dist-packages/numpy/__init__.py", line 130, in <module>
+  File "/usr/lib/python2.6/dist-packages/numpy/add_newdocs.py", line 9, in <module>
+  File "/usr/lib/python2.6/dist-packages/numpy/lib/__init__.py", line 13, in <module>
+  File "/usr/lib/python2.6/dist-packages/numpy/lib/polynomial.py", line 11, in <module>
+AttributeError: 'module' object has no attribute 'core'
 
 
 
