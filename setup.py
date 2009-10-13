@@ -29,7 +29,7 @@ cfg = {
     #'py2exe.icon':'icon.ico', #64x64
     'py2exe.binary':APP_NAME, #leave off the .exe, it will be added
     
-    'py2app.target':'',
+    'py2app.target':APP_NAME,
     'py2app.icon':'icon.icns', #128x128
     
     #'cx_freeze.cmd':'~/src/cx_Freeze-3.0.3/FreezePython',
@@ -141,7 +141,9 @@ if cmd == 'py2app':
 
     APP = [dest]
     DATA_FILES = []
-    OPTIONS = {'argv_emulation': True, 'iconfile':cfg['py2app.icon']}
+    OPTIONS = {'argv_emulation': True, 
+               #'iconfile':cfg['py2app.icon']
+              }
 
     setup(
         app=APP,
