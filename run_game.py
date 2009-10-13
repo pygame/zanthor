@@ -1,7 +1,7 @@
 import sys
-sys.path.insert(0, "lib")
+#sys.path.insert(0, "lib")
 
-import main
+import lib.main
 if __name__ == "__main__":
-    main.main()
+    lib.main.main()
 
