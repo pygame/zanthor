@@ -1,14 +1,14 @@
 #  makes the files in the ../ directory.
 
 
-export DIRNAME=toba_game_source_`date +%Y_%m_%d_%H_%M`
+export DIRNAME=Zanthor_source_1.1_`date +%Y_%m_%d_%H_%M`
 
-cd ../
+#cd ../
 echo "Making directory"
 mkdir $DIRNAME
 
 echo "Copying in game files."
-rsync -a --exclude=.svn --exclude=*.pyc --exclude=*.swp --exclude=*.pyo --exclude=sfx --exclude=graphics trunk/ $DIRNAME/
+rsync -a --exclude=.svn --exclude=*.pyc --exclude=*.swp --exclude=*.pyo --exclude=sfx --exclude=graphics --exclude=dist . dist/$DIRNAME/
 
 
 #copy in pgu if it is there.
@@ -16,6 +16,7 @@ rsync -a --exclude=.svn --exclude=*.pyc --exclude=*.swp --exclude=*.pyo --exclud
 #test -d /home/rene/dev/pygame/pgu/pgu/dist/pgu/pgu && rsync -a --exclude=.svn --exclude=*.pyc --exclude=*.swp --exclude=*.pyo /home/rene/dev/pygame/pgu/pgu/dist/pgu/pgu $DIRNAME/
 #test -d /home/rene/dev/pygame/pgu/pgu/dist/pgu/data && rsync -a --exclude=.svn --exclude=*.pyc --exclude=*.swp --exclude=*.pyo /home/rene/dev/pygame/pgu/pgu/dist/pgu/data $DIRNAME/
 
+cd dist
 
 echo "Making tar"
 tar -cvf $DIRNAME.tar $DIRNAME
