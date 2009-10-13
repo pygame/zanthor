@@ -1,4 +1,15 @@
 
+- packaging:
+    - windows zip version.
+    - windows msi installer.
+    - mac app version.
+    - debian packaging.
+    - rpm packaging.
+    - linux executable... cxfreeze.
+        - make a .sh in the top level.
+        - icon, so it shows on desktop.
+
+
 - tell people what to do.
     - squash peasants, shoot them, collect coal + water to make steam.
 
