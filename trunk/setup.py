@@ -19,7 +19,7 @@ directories_to_remove = [os.path.join('numpy', 'distutils'),
 
 cfg = {
     'name':APP_NAME,
-    'version':'1.0',
+    'version':'1.1',
     'description':'',
     'author':'',
     'author_email':'',
@@ -32,8 +32,9 @@ cfg = {
     'py2app.target':'',
     'py2app.icon':'icon.icns', #128x128
     
-    'cx_freeze.cmd':'~/src/cx_Freeze-3.0.3/FreezePython',
-    'cx_freeze.target':'',
+    #'cx_freeze.cmd':'~/src/cx_Freeze-3.0.3/FreezePython',
+    'cx_freeze.cmd':'cxfreeze',
+    'cx_freeze.target':'%s_linux' % APP_NAME,
     'cx_freeze.binary':APP_NAME,
     }
     
@@ -151,9 +152,24 @@ if cmd == 'py2app':
 
 # make the cx_freeze target
 if cmd == 'cx_freeze':
-    dist_dir = os.path.join('dist',cfg['cx_freeze.target'])
+    app_dist_dir = cfg['cx_freeze.target'] + "_" + cfg['version']
+    dist_dir = os.path.join('dist', app_dist_dir)
     data_dir = dist_dir
-    os.system('%s --install-dir %s --target-name %s run_game.py'%(cfg['cx_freeze.cmd'],cfg['cx_freeze.binary'],dist_dir))
+
+    modules_exclude = "tcl,tk"
+    cmd_args = (cfg['cx_freeze.cmd'], dist_dir, cfg['cx_freeze.binary'], modules_exclude)
+    sys_cmd = '%s --install-dir=%s --target-name=%s --exclude-modules=%s run_game.py' % cmd_args
+    print sys_cmd
+    os.system(sys_cmd)
+
+    import shutil
+    if os.path.exists(os.path.join(data_dir, "tcl")): 
+        shutil.rmtree( os.path.join(data_dir, "tcl") )
+    if os.path.exists(os.path.join(data_dir, "tk")): 
+        shutil.rmtree( os.path.join(data_dir, "tk") )
+    sys_cmd = "cd dist; tar -vczf %s.tgz %s/" % (app_dist_dir,app_dist_dir)  
+    os.system(sys_cmd)
+
 
 # recursively make a bunch of folders
 def make_dirs(dname_):
@@ -174,8 +190,8 @@ if cmd in ('py2exe','cx_freeze','py2app'):
         dname = os.path.join(dest,os.path.dirname(fname))
         make_dirs(dname)
         if not os.path.isdir(fname):
+            #print (fname,dname)
             shutil.copy(fname,dname)
-
 
 # remove files from the zip.
 if 0 and cmd in ('py2exe'):
