@@ -77,27 +77,10 @@ PACKAGEDATA = {
     'cmdclass':    cmdclass,
 
     'package_dir': {'zanthor': 'zanthor',
-                    #'pywebsite.tests': 'test',
-                    #'pywebsite.docs': 'docs',
-                    #'pywebsite.examples': 'examples',
-                    #'pywebsite.signed_url',
-                    #'pywebsite.imageops',
-                    #'pywebsite.sqlitepickle',
-                    #'pywebsite.tests',
                    },
     'packages': ['zanthor',
                  'zanthor.pgu',
                  'zanthor.pgu.gui',
-                 #'zanthor.data',
-                 #'zanthor.data.intro',
-                 #'zanthor.data.menu',
-                 #'zanthor.data.themes',
-                 #'zanthor.data.themes.default',
-                 #'zanthor.data.themes.gray',
-                 #'zanthor.data.themes.tools',
-                 #'zanthor.data.gfx',
-                 #'zanthor.data.levels',
-                 #'zanthor.data.sounds',
                 ],
 }
 
@@ -141,22 +124,8 @@ _DATA_DIR = os.path.join('zanthor', 'data')
 data = []
 add_files(data,os.walk(_DATA_DIR))
 
-#data_dirs = [os.path.join('data', f, '*') for f in os.listdir(_DATA_DIR) if (os.path.isdir(os.path.join(_DATA_DIR, f)) and f != '.svn')]
+data_dirs = [os.path.join(f2.replace(_DATA_DIR, 'data'), '*') for f2 in data]
 
-if 0:
-    print data
-    try:
-        set
-    except:
-        def set(vars):
-            k = {}
-            for f in vars:
-                k[f] = None
-            return k.keys()
-
-    data_dirs = [os.path.join(f2.replace(_DATA_DIR, 'data'), '*') for f2 in set([os.path.split(f)[0] for f in data])]
-data_dirs = ['data/themes/tools/*', 'data/menu/*', 'data/sounds/*', 'data/themes/gray/*', 'data/levels/*', 'data/gfx/*', 'data/intro/*', 'data/themes/default/*']
-print data_dirs
 PACKAGEDATA['package_data'] = {'zanthor': data_dirs}
 #PACKAGEDATA['package_data'] = {'zanthor': data}
 
