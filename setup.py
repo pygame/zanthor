@@ -1,23 +1,20 @@
 import os
 
+# usage: python setup.py command
+#
+# sdist - build a source dist
+# py2exe - build an exe
+# py2app - build an app
+# cx_freeze - build a linux binary (not implemented)
+#
+# the goods are placed in the dist dir for you to .zip up or whatever...
+
+
 APP_NAME = 'zanthor'
 DESCRIPTION = open('README.txt').read()
 CHANGES = open('CHANGES.txt').read()
 TODO = open('TODO.txt').read()
 
-
-files_to_remove = ['tk84.dll',
-                    '_ssl.pyd',
-                    'tcl84.dll',
-                    os.path.join('numpy','core', '_dotblas.pyd'),
-                    os.path.join('numpy', 'linalg', 'lapack_lite.pyd'),
-]
-
-
-directories_to_remove = [os.path.join('numpy', 'distutils'),
-                         'distutils',
-                         'tcl',
-]
 
 
 
@@ -30,8 +27,8 @@ METADATA = {
     'author_email':'renesd@gmail.com',
     'url':'http://www.zanthor.org/',
     'classifiers':      [
-            'Development Status :: 2 - Pre-Alpha',
-            'Intended Audience :: Developers',
+            'Development Status :: 4 - Beta',
+            'Intended Audience :: End Users/Desktop',
             'Intended Audience :: Information Technology',
             'License :: OSI Approved :: BSD License',
             'Operating System :: OS Independent',
@@ -61,14 +58,51 @@ METADATA = {
     'cx_freeze.binary':APP_NAME,
     }
     
-# usage: python setup.py command
-#
-# sdist - build a source dist
-# py2exe - build an exe
-# py2app - build an app
-# cx_freeze - build a linux binary (not implemented)
-#
-# the goods are placed in the dist dir for you to .zip up or whatever...
+files_to_remove = ['tk84.dll',
+                    '_ssl.pyd',
+                    'tcl84.dll',
+                    os.path.join('numpy','core', '_dotblas.pyd'),
+                    os.path.join('numpy', 'linalg', 'lapack_lite.pyd'),
+]
+
+
+directories_to_remove = [os.path.join('numpy', 'distutils'),
+                         'distutils',
+                         'tcl',
+]
+
+
+cmdclass = {}
+PACKAGEDATA = {
+    'cmdclass':    cmdclass,
+
+    'package_dir': {'zanthor': 'zanthor',
+                    #'pywebsite.tests': 'test',
+                    #'pywebsite.docs': 'docs',
+                    #'pywebsite.examples': 'examples',
+                    #'pywebsite.signed_url',
+                    #'pywebsite.imageops',
+                    #'pywebsite.sqlitepickle',
+                    #'pywebsite.tests',
+                   },
+    'packages': ['zanthor',
+                 'zanthor.pgu',
+                 'zanthor.pgu.gui',
+                 #'zanthor.data',
+                 #'zanthor.data.intro',
+                 #'zanthor.data.menu',
+                 #'zanthor.data.themes',
+                 #'zanthor.data.themes.default',
+                 #'zanthor.data.themes.gray',
+                 #'zanthor.data.themes.tools',
+                 #'zanthor.data.gfx',
+                 #'zanthor.data.levels',
+                 #'zanthor.data.sounds',
+                ],
+}
+
+PACKAGEDATA.update(METADATA)
+
 
 from distutils.core import setup, Extension
 try:
@@ -103,14 +137,39 @@ def add_files(dest,generator):
             dest.append(filename)
 
 # define what is our data
+_DATA_DIR = os.path.join('zanthor', 'data')
 data = []
-add_files(data,os.walk(os.path.join('zanthor', 'data')))
+add_files(data,os.walk(_DATA_DIR))
+
+#data_dirs = [os.path.join('data', f, '*') for f in os.listdir(_DATA_DIR) if (os.path.isdir(os.path.join(_DATA_DIR, f)) and f != '.svn')]
+
+if 0:
+    print data
+    try:
+        set
+    except:
+        def set(vars):
+            k = {}
+            for f in vars:
+                k[f] = None
+            return k.keys()
+
+    data_dirs = [os.path.join(f2.replace(_DATA_DIR, 'data'), '*') for f2 in set([os.path.split(f)[0] for f in data])]
+data_dirs = ['data/themes/tools/*', 'data/menu/*', 'data/sounds/*', 'data/themes/gray/*', 'data/levels/*', 'data/gfx/*', 'data/intro/*', 'data/themes/default/*']
+print data_dirs
+PACKAGEDATA['package_data'] = {'zanthor': data_dirs}
+#PACKAGEDATA['package_data'] = {'zanthor': data}
+
+
 
 data.extend(glob.glob('*.txt'))
 # define what is our source
 src = []
 add_files(src,os.walk('zanthor'))
 src.extend(glob.glob('*.py'))
+
+
+
 
 # build the sdist target
 if cmd in ['sdist', 'install']:
@@ -119,7 +178,7 @@ if cmd in ['sdist', 'install']:
     for l in src: f.write("include "+l+"\n")
     f.close()
     
-    setup(**METADATA)
+    setup(**PACKAGEDATA)
 
 # build the py2exe target
 if cmd in ('py2exe',):

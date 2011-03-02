@@ -175,8 +175,6 @@ class Credits(engine.State):
             'philhassey - code, etc',
             'TimInge - music, sfx',
             '',
-            'thanks to richard',
-            'for pyweek!'
             ]
             
         fnt = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
