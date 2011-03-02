@@ -10,8 +10,16 @@ Tweakable files (other) :
 import pygame
 
 import os
+_DATA_DIR = None
 def data_dir(*args):
-    return os.path.join(*(['zanthor', 'data'] + list(args)))
+    global _DATA_DIR
+    if _DATA_DIR is None:
+        #_DATA_DIR = os.path.join(*(['zanthor', 'data'] + list(args)))
+        _DATA_DIR = os.path.join('zanthor', 'data')
+        if not os.path.exists(_DATA_DIR):
+            _DATA_DIR = os.path.join(os.path.split(__file__)[0], 'data')
+    print _DATA_DIR
+    return os.path.join(*([_DATA_DIR] + list(args)))
 
 # the base size.
 BSW,BSH = 640,480
