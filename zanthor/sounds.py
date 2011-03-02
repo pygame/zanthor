@@ -17,9 +17,9 @@ import glob
 import time
 
 from pygame.locals import *
+from const import data_dir
 
-
-SOUND_PATH = os.path.join("data", "sounds")
+SOUND_PATH = data_dir("sounds")
 
 
 EXTENSIONS = [".wav", ".ogg"]

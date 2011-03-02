@@ -15,6 +15,7 @@ import pygame
 import random
 
 import time, os
+from const import data_dir
 
 try:
     import const
@@ -60,7 +61,7 @@ class Isovid(Vid):
         found_image = False
 
         for ext in exts:
-            cached_fname = os.path.join('data', 'cache', 'levels', os.path.basename(level_fname))
+            cached_fname = data_dir('cache', 'levels', os.path.basename(level_fname))
             cached_fname = cached_fname[:-4] + ext
 
             if os.path.exists(cached_fname):
@@ -138,13 +139,13 @@ class Isovid(Vid):
             if CACHE_USE_LEVEL_CACHE:
                 if t2 - t1 > 1.0:
                     # the machine didn't process this fast enough, so we cache it.
-                    if not os.path.exists(os.path.join('data', 'cache')):
-                        os.mkdir(os.path.join('data', 'cache'))
-                        if not os.path.exists(os.path.join('data', 'cache', 'levels')):
-                            os.mkdir(os.path.join('data', 'cache', 'levels'))
+                    if not os.path.exists(data_dir('cache')):
+                        os.mkdir(data_dir('cache'))
+                        if not os.path.exists(data_dir('cache', 'levels')):
+                            os.mkdir(data_dir('cache', 'levels'))
 
                     try:
-                        cached_fname = os.path.join('data', 'cache', 'levels', os.path.basename(self.level_fname))
+                        cached_fname = data_dir('cache', 'levels', os.path.basename(self.level_fname))
                         pygame.image.save(self.bkgr, cached_fname)
                     except:
                         pass

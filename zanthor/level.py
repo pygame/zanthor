@@ -38,7 +38,7 @@ class Level:
 
         if music:
             if pygame.mixer:
-                pygame.mixer.music.load(os.path.join("data","intro",music))
+                pygame.mixer.music.load(data_dir("intro",music))
                 pygame.mixer.music.play(-1)
 
         tdata = {
@@ -71,7 +71,7 @@ class Level:
             #TODO: FIXME:
             
 
-        tv.tga_load_tiles(os.path.join("data","gfx","tiles2.tga"),(32,64),tdata)
+        tv.tga_load_tiles(data_dir("gfx","tiles2.tga"),(32,64),tdata)
         
         tv.tiles[1].item = items.Coal(3.0) #HERE!!
         tv.tiles[2].item = items.Water(3.0)
@@ -94,7 +94,7 @@ class Level:
         
         fname = self.round
         if fname == 0: fname = 'test2.tga'
-        tv.tga_load_level(os.path.join("data","levels",fname),1)
+        tv.tga_load_level(data_dir("levels",fname),1)
         
         #NOTE: blur the background
         for n in xrange(0,1):
@@ -155,8 +155,8 @@ class Level:
         #shape = (16,64-16,1,1)
 
         idata = [
-            #('castle',os.path.join('data', 'gfx', 'castle1.png'),(8,64-16,16,8)),
-            #('coal',os.path.join('data', 'gfx', 'coal.png'),(8,64-16,16,8)),
+            #('castle',data_dir('gfx', 'castle1.png'),(8,64-16,16,8)),
+            #('coal',data_dir('gfx', 'coal.png'),(8,64-16,16,8)),
             #('castle',tv.tiles[8].image,shape),
             ('coal',tv.tiles[1].image,shape),
             ('water',tv.tiles[2].image,shape),
@@ -187,7 +187,7 @@ class Level:
             ('cball4',tv.tiles[35].image,shape),
             ('robot',tv.tiles[12].image.subsurface(0,24,32,32+8),(8,24,16,16)),
             ]
-        timg = pygame.image.load(os.path.join("data","gfx","tiles2.tga")).convert_alpha()
+        timg = pygame.image.load(data_dir("gfx","tiles2.tga")).convert_alpha()
         img = timg.subsurface((0,64*2+32,64,64+32))
         shape = (16,32+32,32,32)
         idata.append(('castle',img,shape))
@@ -296,10 +296,10 @@ class Level:
             n += 1
 
         #load a few more images...
-        tv.images['hole'] = pygame.image.load(os.path.join('data','gfx','hole.png')).convert_alpha()
-        tv.images['hole2'] = pygame.image.load(os.path.join('data','gfx','hole2.png')).convert_alpha()
-        tv.images['hole3'] = pygame.image.load(os.path.join('data','gfx','hole3.png')).convert_alpha()
-        tv.images['hole4'] = pygame.image.load(os.path.join('data','gfx','hole4.png')).convert_alpha()
+        tv.images['hole'] = pygame.image.load(data_dir('gfx','hole.png')).convert_alpha()
+        tv.images['hole2'] = pygame.image.load(data_dir('gfx','hole2.png')).convert_alpha()
+        tv.images['hole3'] = pygame.image.load(data_dir('gfx','hole3.png')).convert_alpha()
+        tv.images['hole4'] = pygame.image.load(data_dir('gfx','hole4.png')).convert_alpha()
         
         img = pygame.Surface((1,1)).convert()
         img.fill((255,0,255))
@@ -308,7 +308,7 @@ class Level:
         
         tv.auto_scroll = True
         
-        self.hairs = pygame.image.load(os.path.join("data","gfx","hairs.tga")).convert_alpha()
+        self.hairs = pygame.image.load(data_dir("gfx","hairs.tga")).convert_alpha()
 
         self.frames = 0
         self.hair_update = None

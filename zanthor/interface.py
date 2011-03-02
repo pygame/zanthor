@@ -220,8 +220,8 @@ class Interface:
         self.message = messages.generate()
         self.last_message = ""
         
-        self.message_font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),20)
-        self.equipment_message_font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),14)
+        self.message_font = pygame.font.Font(data_dir("menu","vinque.ttf"),20)
+        self.equipment_message_font = pygame.font.Font(data_dir("menu","vinque.ttf"),14)
 
         self.stats = {}
         self.stats_draw = StatsDraw()
@@ -273,7 +273,7 @@ class Interface:
         self.stats_draw.images = self.images
 
         for i in images_needed:
-            image_path = os.path.join("data", "gfx", i)
+            image_path = data_dir("gfx", i)
             print image_path
             if os.path.exists(image_path):
                 self.images[i] = pygame.image.load(image_path)

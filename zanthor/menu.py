@@ -68,7 +68,7 @@ def scale_data(data, size):
 class Menu(engine.State):
     
     def init(self):
-        self.bkgr = pygame.image.load(os.path.join("data","gfx","caastles.png")).convert()
+        self.bkgr = pygame.image.load(data_dir("gfx","caastles.png")).convert()
 
         screen_size = pygame.display.get_surface().get_size()
         self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
@@ -81,7 +81,7 @@ class Menu(engine.State):
         self.fonts = {}
         
         for size in [48,24]:
-            self.fonts[size] = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),size)
+            self.fonts[size] = pygame.font.Font(data_dir("menu","vinque.ttf"),size)
 
         self.game.sm.Play(sound_info.birds[0])
         self.last_start = self.game.cur_time
@@ -93,7 +93,7 @@ class Menu(engine.State):
 
         self.frames = 0
         self.level = None
-        self.ximg = pygame.image.load(os.path.join("data","menu","x.png")).convert_alpha()
+        self.ximg = pygame.image.load(data_dir("menu","x.png")).convert_alpha()
         pygame.mouse.set_visible(True)
         self.done = self.game.data['levels']
         
