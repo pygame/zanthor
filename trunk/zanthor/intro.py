@@ -45,7 +45,6 @@ class Intro(engine.State):
             self.elapsed_time = 0.
 
         im_path = os.path.join("data","intro","introbg.png")
-
         self.bkgr = pygame.image.load(im_path).convert()
         screen_size = pygame.display.get_surface().get_size()
         self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
