@@ -34,8 +34,8 @@ class GameOver(engine.State):
         self.game = game
         
     def init(self):
-        self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+        self.bkgr = pygame.image.load(data_dir("intro","mybkgr.png"))
+        self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
 
         screen_size = pygame.display.get_surface().get_size()
         orig_size = 640,480
@@ -90,7 +90,7 @@ class NextLevel(engine.State):
 
 
     def init(self):
-        self.bkgr = pygame.image.load(os.path.join("data","intro","introbg.png")).convert()
+        self.bkgr = pygame.image.load(data_dir("intro","introbg.png")).convert()
         self.bkgrb = pygame.Surface(self.bkgr.get_size())
         self.bkgrb = self.bkgrb.convert_alpha()
         self.bkgrb.fill((0,0,0, 150))
@@ -113,8 +113,8 @@ class NextLevel(engine.State):
 
         self.done = 0
 
-        self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),20)
+        self.bkgr = pygame.image.load(data_dir("intro","mybkgr.png"))
+        self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),20)
 
         screen_size = pygame.display.get_surface().get_size()
         self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
@@ -196,12 +196,12 @@ class GameWon(engine.State):
         self.game = game
         
     def init(self):
-        self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),24)
+        self.bkgr = pygame.image.load(data_dir("intro","mybkgr.png"))
+        self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),24)
         self.frame = 0
         
         if pygame.mixer:
-            pygame.mixer.music.load(os.path.join("data","intro","grass.ogg"))
+            pygame.mixer.music.load(data_dir("intro","grass.ogg"))
             pygame.mixer.music.play(-1)
 
     def paint(self,screen):
@@ -275,8 +275,8 @@ class Pause(engine.State):
         self.game,self.text,self.state = game,text,state
         
     def init(self):
-        #self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),20)
+        #self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
+        self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),20)
 
     def paint_old(self,screen):
         img = self.font.render(self.text,1,(0,0,0))
@@ -327,7 +327,7 @@ class Prompt(engine.State):
         self.game,self.text,self.yes,self.no = game,text,yes,no
         
     def init(self):
-        self.font = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+        self.font = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
 
     def paint(self,screen):
         img = self.font.render(self.text,1,(0,0,0))

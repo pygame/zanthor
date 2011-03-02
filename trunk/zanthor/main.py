@@ -57,8 +57,8 @@ class Game(engine.Game):
 
         # start a song playing here as things load.
         self.sm = sounds.SoundManager()
-        #self.sm.PlayMusic( os.path.join('data', 'music', "intro.ogg") )
-        self.sm.PlayMusic( os.path.join('data', 'intro', "intro1.ogg") )
+        #self.sm.PlayMusic( data_dir('music', "intro.ogg") )
+        self.sm.PlayMusic( data_dir('intro', "intro1.ogg") )
         self.sm.Load()
 
 

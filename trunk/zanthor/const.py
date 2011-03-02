@@ -8,6 +8,11 @@ Tweakable files (other) :
 
 
 import pygame
+
+import os
+def data_dir(*args):
+    return os.path.join(*(['zanthor', 'data'] + list(args)))
+
 # the base size.
 BSW,BSH = 640,480
 SW,SH = 640,480

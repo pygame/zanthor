@@ -27,17 +27,17 @@ class Title(engine.State):
         self.cur = 0
 
         if pygame.mixer:
-            pygame.mixer.music.load(os.path.join("data","intro","zanthor.ogg"))
+            pygame.mixer.music.load(data_dir("intro","zanthor.ogg"))
             pygame.mixer.music.play(-1)
         
         self.font_title = []
         for size in (160,165,170,175,180):
-            self.font_title.append(pygame.font.Font(os.path.join("data","intro","WALSHES.TTF"),size))
-        self.font_main = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+            self.font_title.append(pygame.font.Font(data_dir("intro","WALSHES.TTF"),size))
+        self.font_main = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
         
         self.rects = []
         pygame.mouse.set_visible(True)
-        self.bkgr = pygame.image.load(os.path.join("data","intro","mybkgr.png"))
+        self.bkgr = pygame.image.load(data_dir("intro","mybkgr.png"))
         
         self.frame = 0
 
@@ -130,7 +130,7 @@ class Title(engine.State):
 
 class Help(engine.State):
     def paint(self,screen):
-        screen.blit(pygame.image.load(os.path.join("data","intro","mybkgr.png")),(0,0))
+        screen.blit(pygame.image.load(data_dir("intro","mybkgr.png")),(0,0))
         
         text = [
             'help',
@@ -148,7 +148,7 @@ class Help(engine.State):
             "you are ZANTHOR!",
             ]
             
-        fnt = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),24)
+        fnt = pygame.font.Font(data_dir("menu","vinque.ttf"),24)
         x,y = 48,20
         for line in text:
             img = fnt.render(line,0,(0,0,0))
@@ -166,7 +166,7 @@ class Credits(engine.State):
     def paint(self,screen):
         screen.fill((255,0,0))
 
-        screen.blit(pygame.image.load(os.path.join("data","intro","mybkgr.png")),(0,0))
+        screen.blit(pygame.image.load(data_dir("intro","mybkgr.png")),(0,0))
         text = [
             'credits',
             '',
@@ -179,7 +179,7 @@ class Credits(engine.State):
             'for pyweek!'
             ]
             
-        fnt = pygame.font.Font(os.path.join("data","menu","vinque.ttf"),32)
+        fnt = pygame.font.Font(data_dir("menu","vinque.ttf"),32)
         x,y = 60,20
         for line in text:
             img = fnt.render(line,0,(0,0,0))

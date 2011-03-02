@@ -37,14 +37,14 @@ class Intro(engine.State):
         
         #rev up music...
         if pygame.mixer:
-            pygame.mixer.music.load(os.path.join("data","intro","intro1.ogg"))
+            pygame.mixer.music.load(data_dir("intro","intro1.ogg"))
             #pygame.time.wait(2500) #let fullscreen kick in,
             pygame.mixer.music.play()
         else:
             self.cur_time = time.time()
             self.elapsed_time = 0.
 
-        im_path = os.path.join("data","intro","introbg.png")
+        im_path = data_dir("intro","introbg.png")
         self.bkgr = pygame.image.load(im_path).convert()
         screen_size = pygame.display.get_surface().get_size()
         self.bkgr = pygame.transform.scale( self.bkgr, screen_size )
@@ -52,7 +52,7 @@ class Intro(engine.State):
         self.fonts = {}
         
         for frame,text,alpha,size in data:
-            self.fonts[size] = pygame.font.Font(os.path.join("data","intro","WALSHES.TTF"),size)
+            self.fonts[size] = pygame.font.Font(data_dir("intro","WALSHES.TTF"),size)
  
 
 
