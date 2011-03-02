@@ -81,7 +81,7 @@ def add_files(dest,generator):
 
 # define what is our data
 data = []
-add_files(data,os.walk('data'))
+add_files(data,os.walk(os.path.join('zanthor', 'data')))
 
 data.extend(glob.glob('*.txt'))
 # define what is our source
