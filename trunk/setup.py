@@ -22,7 +22,7 @@ METADATA = {
     'name':APP_NAME,
     'version':'1.2',
     'license':          'GPL',
-    'description':'Zanthor is a game where you play an evil robot castle which is powered by steam.',
+    'description':'Zanthor is a game where you play an evil robot castle which is powered by steam.  @zanthorgame #python #pygame',
     'author':'zanthor.org',
     'author_email':'renesd@gmail.com',
     'url':'http://www.zanthor.org/',
@@ -82,6 +82,7 @@ PACKAGEDATA = {
                  'zanthor.pgu',
                  'zanthor.pgu.gui',
                 ],
+    'scripts': ['scripts/zanthor'],
 }
 
 PACKAGEDATA.update(METADATA)

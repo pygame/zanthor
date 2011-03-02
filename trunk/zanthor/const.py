@@ -18,7 +18,6 @@ def data_dir(*args):
         _DATA_DIR = os.path.join('zanthor', 'data')
         if not os.path.exists(_DATA_DIR):
             _DATA_DIR = os.path.join(os.path.split(__file__)[0], 'data')
-    print _DATA_DIR
     return os.path.join(*([_DATA_DIR] + list(args)))
 
 # the base size.
