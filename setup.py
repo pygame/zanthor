@@ -142,7 +142,7 @@ src.extend(glob.glob('*.py'))
 
 
 # build the sdist target
-if cmd in ['sdist', 'install']:
+if cmd not in "py2exe py2app cx_freeze".split():
     f = open("MANIFEST.in","w")
     for l in data: f.write("include "+l+"\n")
     for l in src: f.write("include "+l+"\n")
