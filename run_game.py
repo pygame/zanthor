@@ -1,7 +1,7 @@
 import sys
 #sys.path.insert(0, "lib")
 
-import lib.main
+import zanthor.main
 if __name__ == "__main__":
-    lib.main.main()
+    zanthor.main.main()
 
