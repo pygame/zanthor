@@ -1,6 +1,14 @@
-APP_NAME = 'Zanthor'
-
 import os
+
+APP_NAME = 'zanthor'
+DESCRIPTION = open('README.txt').read()
+CHANGES = open('CHANGES.txt').read()
+TODO = open('TODO.txt').read()
+
+
+
+
+
 
 files_to_remove = ['tk84.dll',
                     '_ssl.pyd',
@@ -61,7 +69,7 @@ import shutil
 try:
     cmd = sys.argv[1]
 except IndexError:
-    print 'Usage: setup.py py2exe|py2app|cx_freeze'
+    print 'Usage: setup.py install|py2exe|py2app|cx_freeze'
     raise SystemExit
 
 # utility for adding subdirectories
@@ -86,11 +94,11 @@ add_files(data,os.walk(os.path.join('zanthor', 'data')))
 data.extend(glob.glob('*.txt'))
 # define what is our source
 src = []
-add_files(src,os.walk('lib'))
+add_files(src,os.walk('zanthor'))
 src.extend(glob.glob('*.py'))
 
 # build the sdist target
-if cmd == 'sdist':
+if cmd in ['sdist', 'install']:
     f = open("MANIFEST.in","w")
     for l in data: f.write("include "+l+"\n")
     for l in src: f.write("include "+l+"\n")
