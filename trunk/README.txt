@@ -1,8 +1,8 @@
 Zanthor!
 
-http://www.imitationpickles.org/pyweek2/
+http://www.zanthor.org
 
-main.py
+run_game.py
 
 KEYBOARD: arrows or wasd - to move. F10 pause. f/space/ctrl to fire.
 MOUSE:    button one fire.  button two move.
