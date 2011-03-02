@@ -1,26 +1,2 @@
-============================================
-- build truck bot
-x - clouds that can move with you
-- cannon explosions
-- effects need to go "around" objects when you walk upwards, or whatever, not get
-sucked into the floor, each effect should remember its Z position, somehow...
-
-==========================================
-- make coal, water, rubble into tiles
-- make cities into sprites
-- make isovid.set() smartly make changes to .slayer and other magic
-astar layers
 
 
-2006-03-26========================
-- the player sprite is not put in the area where the codes are placed.
-    - seems to be a miss match between the code coordinates and the levels.
-
-- the sprites are shown below the levels.
-
-- need to remove the yes/no question after picking up coal.  How do you remove gui elements?
-
-
-
-==========================================
-- added TODO.txt, BUGS.txt, CHANGES.txt, LICENSE.txt
