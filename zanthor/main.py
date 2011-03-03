@@ -1,3 +1,4 @@
+
 if 0:
     try:
         #0/0 #HACK: so i can CTRL-c out
@@ -11,6 +12,21 @@ import os,sys,time,copy
 
 
 import pygame
+# Import the android module. If we can't import it, set it to None - this
+# lets us test it, and check to see if we want android-specific behavior.
+try:
+    import android
+except ImportError:
+    android = None
+
+
+try:
+    import pygame.mixer as mixer
+except ImportError:
+    import android_mixer
+    pygame.mixer = android_mixer
+
+
 from pygame.locals import *
 
 
@@ -103,6 +119,11 @@ class Game(engine.Game):
 
         
     def event(self,e):
+        # Android-specific:
+        if android:
+            if android.check_pause():
+                android.wait_for_resume()
+
         #capture special events on a top level,
         #should only be used for screen shots, forced quits, 
         #magic cheat buttons, etc... debug keys and the like ...
@@ -126,6 +147,8 @@ class Game(engine.Game):
 def do_main(no_intro = 0, the_level = 0):
     global flags
 
+    print ("hello from zanthor do_main")
+
     pygame.mixer.pre_init(22050, -16, 2, 1024)
 
     pygame.init()
@@ -139,11 +162,14 @@ def do_main(no_intro = 0, the_level = 0):
     screen = pygame.display.set_mode((SW,SH), flags)
 
 
+    # Map the back button to the escape key.
+    if android:
+        android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
+
+    print ("initialising joystick module")
 
     pygame.joystick.init()
-
     joystics =[]
-
     num_joys = pygame.joystick.get_count()
 
 
@@ -187,6 +213,8 @@ def do_main(no_intro = 0, the_level = 0):
 
 def main():
     global flags
+
+    print ('hello from zanthor: top of main')
 
     if 'speed' in sys.argv:
         FPS = 65535
