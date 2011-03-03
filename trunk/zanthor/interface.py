@@ -10,9 +10,15 @@ import pygame.draw
 import util
 from pgu import gui
 
-#import pgu.html
-import html
-
+try:
+    #import pgu.html
+    import html
+except ImportError:
+    # a fake html write function.
+    class __html(object):
+        def write(self, *args):
+            pass
+    html = __html()
 
 from const import *
 import units

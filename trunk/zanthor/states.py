@@ -15,7 +15,7 @@ import level
 import menu
 import pgu.text
 
-import html
+#import html
 import messages
 from const import *
 import util
