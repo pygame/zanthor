@@ -20,12 +20,12 @@ TODO = open('TODO.txt').read()
 
 METADATA = {
     'name':APP_NAME,
-    'version':'1.2',
+    'version':          '1.2.1',
     'license':          'GPL',
-    'description':'Zanthor is a game where you play an evil robot castle which is powered by steam.  @zanthorgame #python #pygame',
-    'author':'zanthor.org',
-    'author_email':'renesd@gmail.com',
-    'url':'http://www.zanthor.org/',
+    'description':      'Zanthor is a game where you play an evil robot castle which is powered by steam.  @zanthorgame #python #pygame',
+    'author':           'zanthor.org',
+    'author_email':     'renesd@gmail.com',
+    'url':              'http://www.zanthor.org/',
     'classifiers':      [
             'Development Status :: 4 - Beta',
             'Intended Audience :: End Users/Desktop',
@@ -133,6 +133,7 @@ PACKAGEDATA['package_data'] = {'zanthor': data_dirs}
 
 
 data.extend(glob.glob('*.txt'))
+data.append('MANIFEST.in')
 # define what is our source
 src = []
 add_files(src,os.walk('zanthor'))
