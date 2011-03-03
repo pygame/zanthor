@@ -22,11 +22,11 @@ def data_dir(*args):
 
 # the base size.
 BSW,BSH = 640,480
-SW,SH = 640,480
 SW,SH = 320,200
 SW,SH = 800,600
 SW,SH = 1280,800
 SW,SH = 1024,768
+SW,SH = 640,480
 
 DX = float(SW) / BSW
 DY = float(SH) / BSH
