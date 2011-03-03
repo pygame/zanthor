@@ -187,7 +187,10 @@ class Level:
             ('cball4',tv.tiles[35].image,shape),
             ('robot',tv.tiles[12].image.subsurface(0,24,32,32+8),(8,24,16,16)),
             ]
-        timg = pygame.image.load(data_dir("gfx","tiles2.tga")).convert_alpha()
+        try:
+            timg = pygame.image.load(data_dir("gfx","tiles2.tga")).convert_alpha()
+        except:
+            timg = pygame.image.load(data_dir("gfx","tiles2.png")).convert_alpha()
         img = timg.subsurface((0,64*2+32,64,64+32))
         shape = (16,32+32,32,32)
         idata.append(('castle',img,shape))
