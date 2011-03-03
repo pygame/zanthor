@@ -3,16 +3,19 @@
 #     A goto_next method is needed.  Which cycles over the next idx.
 
 
+try:
+    from UserList import UserList
+except ImportError:
+    UserList = list
 
-import UserList
-
-
-class cyclic_list(UserList.UserList):
+class cyclic_list(UserList):
     
     def __init__(self, *args, **kwargs):
         
-	UserList.UserList.__init__(self, *args, **kwargs)
+	UserList.__init__(self, *args, **kwargs)
 	self.idx = 0
+        if not hasattr(self, 'data'):
+            self.data = self
 
     def next(self):
         """ increments the cursor, and returns the new current idx.
