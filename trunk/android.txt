@@ -1,4 +1,4 @@
 title=Zanthor
 author=zanthor.org
 api=1
-orientation=portrait
+orientation=landscape

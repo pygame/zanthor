@@ -310,8 +310,14 @@ class Vid:
         </dl>
         """
         TW,TH = size
-        if type(fname) == str: img = pygame.image.load(fname).convert_alpha()
-        else: img = fname
+        if type(fname) == str: 
+            try:
+                img = pygame.image.load(fname)
+            except:
+                img = pygame.image.load(fname.replace("tga", "png"))
+            img = img.convert_alpha()
+        else:
+            img = fname
         w,h = img.get_width(),img.get_height()
         
         n = 0
