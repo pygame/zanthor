@@ -369,7 +369,12 @@ class Isovid(Vid):
         """
 
         if type(fname) == str: 
-            img = pygame.image.load(fname)
+            try:
+                img = pygame.image.load(fname)
+            except:
+                print (fname)
+                img = pygame.image.load(fname.replace("tga", "png"))
+
             self.level_fname = fname
         else: 
             img = fname
