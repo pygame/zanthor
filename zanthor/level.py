@@ -311,7 +311,10 @@ class Level:
         
         tv.auto_scroll = True
         
-        self.hairs = pygame.image.load(data_dir("gfx","hairs.tga")).convert_alpha()
+        try:
+            self.hairs = pygame.image.load(data_dir("gfx","hairs.tga")).convert_alpha()
+        except:
+            self.hairs = pygame.image.load(data_dir("gfx","hairs.png")).convert_alpha()
 
         self.frames = 0
         self.hair_update = None
