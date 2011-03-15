@@ -1,26 +1,30 @@
 
-- packaging:
-    - windows zip version.
-    - windows msi installer.
-    - mac app version.
-    - debian packaging.
-    - rpm packaging.
-    - linux executable... cxfreeze.
-        - make a .sh in the top level.
-        - icon, so it shows on desktop.
+
+* freshmeat submit, http://help.freshmeat.net/kb/api-7/data-api-intro
+* change to hg or bzr.  To allow easier forks.
+* debian and ubuntu packaging.
+* windows zip version.
+* windows msi installer.
+* mac app version.
+* rpm packaging.
+* linux executable... cxfreeze.
+* make a .sh in the top level.
+* icon, so it shows on desktop.
 
 
-- tell people what to do.
-    - squash peasants, shoot them, collect coal + water to make steam.
 
-- docs for level building.
 
-- when hit by cannon ball, chunks should go in the direction of the ball.
-    - plus chunks flying elsewhere a little would please ZANTHOR.
-- little words above top right peasant box explaining what it is.
-- firing with space bar should follow mouse?  
-    - If mouse has moved in the last while, then follow mouse.
-        - for keyboard movement.
+* tell people what to do.
+    * squash peasants, shoot them, collect coal + water to make steam.
+
+* docs for level building.
+
+* when hit by cannon ball, chunks should go in the direction of the ball.
+    * plus chunks flying elsewhere a little would please ZANTHOR.
+* little words above top right peasant box explaining what it is.
+* firing with space bar should follow mouse?  
+    * If mouse has moved in the last while, then follow mouse.
+        * for keyboard movement.
 
 
 
