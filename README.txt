@@ -1,7 +1,5 @@
 Zanthor!
 
-http://www.zanthor.org
-
 run_game.py
 
 KEYBOARD: arrows or wasd - to move. F10 pause. f/space/ctrl to fire.
@@ -27,5 +25,6 @@ JOYSTICK: game pad move.  button 1 fire.
       //       |    \ Thank you for deleting.
 
 
-Sanity is as overrated as a nuclear bomb.
-
+Zanthor was originally a pyweek 2 entry.
+http://www.imitationpickles.org/pyweek2/wiki/index
+https://pyweek.org/e/toba/
