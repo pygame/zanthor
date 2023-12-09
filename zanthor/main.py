@@ -152,6 +152,8 @@ def do_main(no_intro = 0, the_level = 0):
     pygame.mixer.pre_init(22050, -16, 2, 1024)
 
     pygame.init()
+    if pygame.mixer and not pygame.mixer.get_init():
+        pygame.mixer = None
     pygame.font.init()
     #pygame.display.set_caption("The Wrath of ZANTHOR") #It's powered by steam!")
     pygame.display.set_caption("The Wrath of ZANTHOR!  It's powered by steam!  h key for help")
