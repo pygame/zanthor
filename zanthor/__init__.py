@@ -1,3 +1,4 @@
 if __name__ == "__main__":
-    import main
+    from . import main
+
     main.main()
