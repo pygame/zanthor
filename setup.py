@@ -11,11 +11,7 @@ import os
 
 
 APP_NAME = 'zanthor'
-DESCRIPTION = open('README.txt').read()
-CHANGES = open('CHANGES.txt').read()
-TODO = open('TODO.txt').read()
-
-
+DESCRIPTION = open('README.md').read()
 
 
 METADATA = {
