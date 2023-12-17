@@ -7,6 +7,4 @@
 #                 cx,cy = (q.x+p.x)/2,(q.y+p.y)/2
 #                 p.x,p.y = cx - dx*f/dist,cy - dy*f/dist
 #                 q.x,q.y = cx + dx*f/dist,cy + dy*f/dist
-#             
-                
-            
+#

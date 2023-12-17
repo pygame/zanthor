@@ -1,31 +1,32 @@
 import pygame
 from pygame.locals import *
 
-from theme import Theme
-from style import Style
-from widget import Widget
-from surface import subsurface, ProxySurface
-from const import *
+from .theme import Theme
+from .style import Style
+from .widget import Widget
+from .surface import subsurface, ProxySurface
+from .const import *
 
-from container import Container
-from app import App, Desktop
-from table import Table
-from document import Document
-#html
-from area import SlideBox, ScrollArea, List 
+from .container import Container
+from .app import App, Desktop
+from .table import Table
+from .document import Document
 
-from form import Form
-from group import Group
+# html
+from .area import SlideBox, ScrollArea, List
 
-from basic import Spacer, Color, Label, Image
-from button import Icon, Button, Switch, Checkbox, Radio, Tool 
-from input import Input, Password
-from keysym import Keysym
-from slider import VSlider, HSlider, VScrollBar, HScrollBar
-from select import Select
-from misc import ProgressBar
+from .form import Form
+from .group import Group
 
-from menus import Menus
-from dialog import Dialog, FileDialog
+from .basic import Spacer, Color, Label, Image
+from .button import Icon, Button, Switch, Checkbox, Radio, Tool
+from .input import Input, Password
+from .keysym import Keysym
+from .slider import VSlider, HSlider, VScrollBar, HScrollBar
+from .select import Select
+from .misc import ProgressBar
 
-from deprecated import Toolbox, action_open, action_setvalue, action_quit, action_exec
+from .menus import Menus
+from .dialog import Dialog, FileDialog
+
+from .deprecated import Toolbox, action_open, action_setvalue, action_quit, action_exec

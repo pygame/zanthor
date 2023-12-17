@@ -1,7 +1,0 @@
-
-changes
-=======
-
-Some packaging fixes for pip.
-
-

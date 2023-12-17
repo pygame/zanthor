@@ -6,7 +6,7 @@ Each list defines a list of sounds which can be played when that event happens.
 They get played in random order, or in cyclic order.
 """
 
-import cyclic_list
+from . import cyclic_list
 
 cl = cyclic_list.cyclic_list
 
@@ -30,7 +30,8 @@ water = cl(["water"])
 def get_upgrade_sound(upgrade_what):
     return "upgrade"
 
-#TODO: need to put in the release sound, and engine noises.
+
+# TODO: need to put in the release sound, and engine noises.
 release = cl(["release"])
 
 engine_slow = cl(["engine-slow"])
@@ -45,5 +46,3 @@ squish = cl(["squish1", "squish2"])
 
 ouch2 = cl(["ouch2"])
 ouch1 = cl(["ouch1"])
-
-

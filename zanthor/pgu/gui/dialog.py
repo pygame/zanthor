@@ -2,69 +2,69 @@
 """
 import os
 
-from const import *
-import table, area
-import basic, input, button
+from .const import *
+from . import table, area
+from . import basic, input, button
+
 
 class Dialog(table.Table):
     """A dialog window with a title bar and an "close" button on the bar.
-    
+
     <pre>Dialog(title,main)</pre>
-    
+
     <dl>
     <dt>title<dd>title widget, usually a label
     <dt>main<dd>main widget, usually a container
     </dl>
-    
+
     <strong>Example</strong>
     <code>
     title = gui.Label("My Title")
     main = gui.Container()
     #add stuff to the container...
-    
+
     d = gui.Dialog(title,main)
     d.open()
     </code>
     """
-    def __init__(self,title,main,**params):
-        params.setdefault('cls','dialog')
-        table.Table.__init__(self,**params)
-        
-        
+
+    def __init__(self, title, main, **params):
+        params.setdefault("cls", "dialog")
+        table.Table.__init__(self, **params)
+
         self.tr()
-        self.td(title,align=-1,cls=self.cls+'.bar')
-        clos = button.Icon(self.cls+".bar.close")
-        clos.connect(CLICK,self.close,None) 
-        self.td(clos,align=1,cls=self.cls+'.bar')
-        
+        self.td(title, align=-1, cls=self.cls + ".bar")
+        clos = button.Icon(self.cls + ".bar.close")
+        clos.connect(CLICK, self.close, None)
+        self.td(clos, align=1, cls=self.cls + ".bar")
+
         self.tr()
-        self.td(main,colspan=2,cls=self.cls+".main")
-        
-        
+        self.td(main, colspan=2, cls=self.cls + ".main")
+
+
 #         self.tr()
-#         
-#         
+#
+#
 #         t = table.Table(cls=self.cls+".bar")
 #         t.tr()
 #         t.td(title)
 #         clos = button.Icon(self.cls+".bar.close")
 #         t.td(clos,align=1)
-#         clos.connect(CLICK,self.close,None) 
+#         clos.connect(CLICK,self.close,None)
 #         self.add(t,0,0)
-#         
+#
 #         main.rect.w,main.rect.h = main.resize()
 #         clos.rect.w,clos.rect.h = clos.resize()
 #         title.container.style.width = main.rect.w - clos.rect.w
-#         
+#
 #         self.tr()
 #         self.td(main,cls=self.cls+".main")
-# 
-        
+#
 
 
 class FileDialog(Dialog):
     """A file picker dialog window.
-    
+
     <pre>FileDialog()</pre>
     <p>Some optional parameters:</p>
     <dl>
@@ -73,28 +73,35 @@ class FileDialog(Dialog):
     <dt>path<dd>initial path
     </dl>
     """
-    
-    def __init__(self, title_txt="File Browser", button_txt="Okay", cls="filedialog", path=None):
-        if not path: self.curdir = os.getcwd()
-        else: self.curdir = path
-        import app
-        self.dir_img = basic.Image(app.App.app.theme.get(cls+'.folder', '', 'image'))
-        td_style = {'padding_left': 4,
-                    'padding_right': 4,
-                    'padding_top': 2,
-                    'padding_bottom': 2}
-        self.title = basic.Label(title_txt, cls=cls+".title.label")
+
+    def __init__(
+        self, title_txt="File Browser", button_txt="Okay", cls="filedialog", path=None
+    ):
+        if not path:
+            self.curdir = os.getcwd()
+        else:
+            self.curdir = path
+        from . import app
+
+        self.dir_img = basic.Image(app.App.app.theme.get(cls + ".folder", "", "image"))
+        td_style = {
+            "padding_left": 4,
+            "padding_right": 4,
+            "padding_top": 2,
+            "padding_bottom": 2,
+        }
+        self.title = basic.Label(title_txt, cls=cls + ".title.label")
         self.body = table.Table()
         self.list = area.List(width=350, height=150)
-        self.input_dir = input.Input(cls=cls+".input")
-        self.input_file = input.Input(cls=cls+".input")
+        self.input_dir = input.Input(cls=cls + ".input")
+        self.input_file = input.Input(cls=cls + ".input")
         self._list_dir_()
         self.button_ok = button.Button(button_txt)
         self.body.tr()
-        self.body.td(basic.Label("Path", cls=cls+".label"), style=td_style, align=-1)
+        self.body.td(basic.Label("Path", cls=cls + ".label"), style=td_style, align=-1)
         self.body.td(self.input_dir, style=td_style)
         self.body.tr()
-        self.body.td(basic.Label("File", cls=cls+".label"), style=td_style, align=-1)
+        self.body.td(basic.Label("File", cls=cls + ".label"), style=td_style, align=-1)
         self.body.td(self.input_file, style=td_style)
         self.body.td(self.button_ok, style=td_style)
         self.body.tr()
@@ -103,7 +110,7 @@ class FileDialog(Dialog):
         self.button_ok.connect(CLICK, self._button_okay_clicked_, None)
         self.value = None
         Dialog.__init__(self, self.title, self.body)
-        
+
     def _list_dir_(self):
         self.input_dir.value = self.curdir
         self.input_dir.pos = len(self.curdir)
@@ -112,24 +119,26 @@ class FileDialog(Dialog):
         files = []
         try:
             for i in os.listdir(self.curdir):
-                if os.path.isdir(os.path.join(self.curdir, i)): dirs.append(i)
-                else: files.append(i)
+                if os.path.isdir(os.path.join(self.curdir, i)):
+                    dirs.append(i)
+                else:
+                    files.append(i)
         except:
             self.input_file.value = "Opps! no access"
-        if '..' not in dirs: dirs.append('..')
+        if ".." not in dirs:
+            dirs.append("..")
         dirs.sort()
         files.sort()
         for i in dirs:
-            #item = ListItem(image=self.dir_img, text=i, value=i)
-            self.list.add(i,image=self.dir_img,value=i)
+            # item = ListItem(image=self.dir_img, text=i, value=i)
+            self.list.add(i, image=self.dir_img, value=i)
         for i in files:
-            #item = ListItem(image=None, text=i, value=i)
-            self.list.add(i,value=i)
-        #self.list.resize()
+            # item = ListItem(image=None, text=i, value=i)
+            self.list.add(i, value=i)
+        # self.list.resize()
         self.list.set_vertical_scroll(0)
-        #self.list.repaintall()
-        
-        
+        # self.list.repaintall()
+
     def _item_select_changed_(self, arg):
         self.input_file.value = self.list.value
         fname = os.path.abspath(os.path.join(self.curdir, self.input_file.value))
@@ -138,7 +147,6 @@ class FileDialog(Dialog):
             self.curdir = fname
             self.list.clear()
             self._list_dir_()
-
 
     def _button_okay_clicked_(self, arg):
         if self.input_dir.value != self.curdir:
@@ -149,5 +157,5 @@ class FileDialog(Dialog):
                 self._list_dir_()
         else:
             self.value = os.path.join(self.curdir, self.input_file.value)
-	    self.send(CHANGE)
+            self.send(CHANGE)
             self.close()

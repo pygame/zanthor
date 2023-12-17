@@ -5,11 +5,6 @@
 
 class Human:
     def __init__(self):
-        """
-        """
-        self.health = 1.
-        self.speed = 1.
-
-
-
-
+        """ """
+        self.health = 1.0
+        self.speed = 1.0

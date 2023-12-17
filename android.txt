@@ -1,4 +1,0 @@
-title=Zanthor
-author=zanthor.org
-api=1
-orientation=landscape
