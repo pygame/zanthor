@@ -5,12 +5,12 @@ DESCRIPTION = open("README.md").read()
 
 METADATA = {
     "name": APP_NAME,
-    "version": "1.2.3",
+    "version": "1.2.4a1",
     "license": "GPL",
     "description": "Zanthor is a game where you play an evil robot castle which is powered by steam.  @zanthorgame #python #pygame",
     "author": "zanthor.org",
     "author_email": "renesd@gmail.com",
-    "url": "http://www.zanthor.org/",
+    "url": "http://github.com/pygame/zanthor/",
     "classifiers": [
         "Development Status :: 4 - Beta",
         "Intended Audience :: End Users/Desktop",
