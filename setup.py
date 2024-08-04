@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='zanthor',
-    version="1.2.4a2",
+    version="1.2.4",
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
