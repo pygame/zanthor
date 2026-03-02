@@ -287,7 +287,7 @@ class CastleSprite(isovid.Sprite):
             self.fire_state = "firing"
 
         if (e.type == JOYBUTTONDOWN and e.button == JOY_FIRE_BUTTON) or (
-            e.type == KEYDOWN and e.key in [K_f, K_LCTRL, K_RCTRL, K_SPACE]
+            e.type == KEYDOWN and e.key in KEYS_FIRE()
         ):
             sx, sy = self.rect.centerx // tw, self.rect.centery // th
 
@@ -297,7 +297,7 @@ class CastleSprite(isovid.Sprite):
             self.unit.prep_fire()
 
         if (e.type == JOYBUTTONUP and e.button == JOY_FIRE_BUTTON) or (
-            e.type == KEYUP and e.key in [K_f, K_LCTRL, K_RCTRL, K_SPACE]
+            e.type == KEYUP and e.key in KEYS_FIRE()
         ):
             facing_x, facing_y = (self.last_direction_dx, self.last_direction_dy)
             facing_x, facing_y = iso_facing_to_screen_facing(
@@ -333,34 +333,34 @@ class CastleSprite(isovid.Sprite):
                 self.yes_pickup(e)
 
         if e.type == KEYUP:
-            if e.key in [K_UP, K_w]:
+            if e.key in KEYS_UP():
                 self.last_direction_dy = self.direction_dy
                 self.direction_dy = 0
-            elif e.key in [K_DOWN, K_s]:
+            elif e.key in KEYS_DOWN():
                 self.last_direction_dy = self.direction_dy
                 self.direction_dy = 0
-            elif e.key in [K_LEFT, K_a]:
+            elif e.key in KEYS_LEFT():
                 self.last_direction_dx = self.direction_dx
                 self.direction_dx = 0
-            elif e.key in [K_RIGHT, K_d]:
+            elif e.key in KEYS_RIGHT():
                 self.last_direction_dx = self.direction_dx
                 self.direction_dx = 0
 
         # some testing keys.
         if e.type == KEYDOWN:
-            if e.key in [K_UP, K_w]:
+            if e.key in KEYS_UP():
                 self.direction_dy = -1
                 self.last_direction_dy = self.direction_dy
                 self.last_direction_dx = self.direction_dx
-            elif e.key in [K_DOWN, K_s]:
+            elif e.key in KEYS_DOWN():
                 self.direction_dy = 1
                 self.last_direction_dy = self.direction_dy
                 self.last_direction_dx = self.direction_dx
-            elif e.key in [K_LEFT, K_a]:
+            elif e.key in KEYS_LEFT():
                 self.direction_dx = -1
                 self.last_direction_dx = self.direction_dx
                 self.last_direction_dy = self.direction_dy
-            elif e.key in [K_RIGHT, K_d]:
+            elif e.key in KEYS_RIGHT():
                 self.direction_dx = 1
                 self.last_direction_dx = self.direction_dx
                 self.last_direction_dy = self.direction_dy

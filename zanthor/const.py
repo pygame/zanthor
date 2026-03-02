@@ -1,5 +1,11 @@
 """ this file has lots of tweaky things in it.
 
+Historically every value here was hard‑coded.  The module now pulls the
+values that *should* be user‑configurable from :mod:`zanthor.settings`
+(resolution, FPS, control keys, audio levels, …).  Anything not in the
+schema stays a plain constant so existing ``from .const import *``
+imports keep working unchanged.
+
 Tweakable files (other) :
     sound_info.py - tweaking sounds.
     units.py - tweaking unit stats.
@@ -10,6 +16,17 @@ Tweakable files (other) :
 import pygame
 
 import os
+
+# --------------------------------------------------------------------- #
+#  User settings – loaded once at import time.
+# --------------------------------------------------------------------- #
+# The settings module is intentionally import‑safe: importing it never
+# initialises pygame, and any I/O error simply yields defaults.  This
+# means ``const.py`` (which is imported from nearly every file in the
+# game) can still be used as a source of module‑level "constants"
+# while really reading from a JSON config the user can edit.
+from . import settings as _settings
+
 
 _DATA_DIR = None
 
@@ -24,20 +41,27 @@ def data_dir(*args):
     return os.path.join(*([_DATA_DIR] + list(args)))
 
 
-# the base size.
+# --------------------------------------------------------------------- #
+#  Display
+# --------------------------------------------------------------------- #
+# The base size every layout rect was authored against.  All the S_* rects
+# below are multiplied by (DX, DY) so the UI scales to whatever resolution
+# the user picks.
 BSW, BSH = 640, 480
-SW, SH = 320, 200
-SW, SH = 800, 600
-SW, SH = 1280, 800
-SW, SH = 1024, 768
-SW, SH = 640, 480
+
+# Previous code did:
+#     SW, SH = 640, 480      # <-- hard-coded!
+# Now we ask the settings module.  Users can change this either in the
+# in-game Options screen or by editing ~/.config/zanthor/settings.json.
+SW, SH = _settings.resolution()
 
 DX = float(SW) / BSW
 DY = float(SH) / BSH
 
 dxdy = (DX, DY)
 
-FPS = 30
+# Likewise FPS is now configurable ("display.fps_cap" in settings.json).
+FPS = _settings.fps_cap()
 
 MIN_CANNON_PRESSURE = 6
 
@@ -133,7 +157,12 @@ S_NEXT_LEVEL_MESSAGES = multr(dxdy, (20, 20, 500, 410))
 S_ = pygame.Rect(480, 360, 160, 120)
 
 
-UPGRADE_FUN = 1
+# --------------------------------------------------------------------- #
+#  Gameplay toggles – now sourced from settings (with sane fallbacks).
+# --------------------------------------------------------------------- #
+# Debug: pressing 1-8 in-game grants free upgrades.  Disabled by default
+# for regular players; power users can flip it in the Options screen.
+UPGRADE_FUN = 1 if _settings.get("gameplay.debug_upgrades", False) else 0
 
 CACHE_USE_LEVEL_CACHE = 1
 
@@ -144,22 +173,27 @@ CACHE_CHECK_TILES = 1
 CACHE_CHECK_LEVEL = 1
 
 
-# joystick buttons
-JOY_FIRE_BUTTON = 1
-JOY_PICKUP_BUTTON = 2
+# --------------------------------------------------------------------- #
+#  Controls
+# --------------------------------------------------------------------- #
+# joystick buttons (indices, not pygame constants)
+JOY_FIRE_BUTTON = int(_settings.get("controls.joy_fire_button", 1))
+JOY_PICKUP_BUTTON = int(_settings.get("controls.joy_pickup_button", 2))
 
 # should things be auto picked up or not?
-AUTO_PICKUP = 1
+AUTO_PICKUP = 1 if _settings.get("gameplay.auto_pickup", True) else 0
 
 # should holes that the castle hits the ground be
 # solid tiles
 # 0 = no, 1 = yes, 2= big holes
-HOLES_ARE_TILES = 0
+HOLES_ARE_TILES = int(_settings.get("gameplay.holes_are_tiles", 0) or 0)
 
 
 # NOTE: mouselook seems to not work well on some systems...
 #       can toggle it with the m key in game.
-DISABLE_MOUSE_LOOK = 0
+# 1 disables mouse-look, 0 enables it – we derive it from the *positive*
+# "mouse_look" boolean in settings so the JSON stays intuitive.
+DISABLE_MOUSE_LOOK = 0 if _settings.get("controls.mouse_look", True) else 1
 
 
 FLOCKING_FLUCT = 1
@@ -176,3 +210,40 @@ def get_mouse_info():
         SCROLL_BORDER = 160  # size of scrolling border during auto-scroll
 
     return [SCROLL_MOUSE, SCROLL_AUTO, SCROLL_BORDER]
+
+
+# --------------------------------------------------------------------- #
+#  Key-binding helpers
+# --------------------------------------------------------------------- #
+# Historically the castle/level/menu modules compared against hard-coded
+# pygame K_* constants.  They now call these helpers, which resolve the
+# user's bindings on the fly.  Calling settings.keys(...) is cheap – the
+# settings module caches the resolved key-codes until a rebind happens.
+
+def KEYS_UP():
+    """Pygame key-codes bound to 'move up'."""
+    return _settings.keys("move_up")
+
+
+def KEYS_DOWN():
+    return _settings.keys("move_down")
+
+
+def KEYS_LEFT():
+    return _settings.keys("move_left")
+
+
+def KEYS_RIGHT():
+    return _settings.keys("move_right")
+
+
+def KEYS_FIRE():
+    return _settings.keys("fire")
+
+
+def KEYS_PAUSE():
+    return _settings.keys("pause")
+
+
+def KEYS_TOGGLE_MOUSELOOK():
+    return _settings.keys("toggle_mouselook")

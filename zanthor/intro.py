@@ -38,6 +38,12 @@ class Intro(engine.State):
             pygame.mixer.music.load(data_dir("intro", "intro1.ogg"))
             # pygame.time.wait(2500) #let fullscreen kick in,
             pygame.mixer.music.play()
+            # Honour the user-configured music volume.
+            try:
+                from . import settings
+                pygame.mixer.music.set_volume(settings.music_volume())
+            except Exception:
+                pass
         else:
             self.cur_time = time.time()
             self.elapsed_time = 0.0

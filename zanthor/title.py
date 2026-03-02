@@ -21,6 +21,7 @@ class Title(engine.State):
             # ('Load','load'),
             # ('Save','save'),
             ("Help", Help),
+            ("Options", "options"),
             ("Credits", Credits),
             ("Quit", engine.Quit),
         ]
@@ -29,6 +30,12 @@ class Title(engine.State):
         if pygame.mixer:
             pygame.mixer.music.load(data_dir("intro", "zanthor.ogg"))
             pygame.mixer.music.play(-1)
+            # Honour the user-configured music volume.
+            try:
+                from . import settings
+                pygame.mixer.music.set_volume(settings.music_volume())
+            except Exception:
+                pass
 
         self.font_title = []
         for size in (160, 165, 170, 175, 180):
@@ -150,6 +157,11 @@ class Title(engine.State):
                 from . import menu
 
                 return menu.Menu(self.game)
+            elif action == "options":
+                # Launch the Options screen.  We do NOT stop the title
+                # music so the user hears volume-slider changes live.
+                from . import options
+                return options.Options(self.game)
             else:
                 return action(self.game)
 

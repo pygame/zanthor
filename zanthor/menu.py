@@ -385,16 +385,16 @@ class Menu(engine.State):
         if e.type in [KEYDOWN, JOYAXISMOTION]:
             self.show_selected = True
 
-        if e.type == KEYDOWN and e.key in [K_LEFT, K_a]:
+        if e.type == KEYDOWN and e.key in KEYS_LEFT():
             self.set_selected_parts((self.selected_row, self.selected_collum - 1))
 
-        if e.type == KEYDOWN and e.key in [K_RIGHT, K_d]:
+        if e.type == KEYDOWN and e.key in KEYS_RIGHT():
             self.set_selected_parts((self.selected_row, self.selected_collum + 1))
 
-        if e.type == KEYDOWN and e.key in [K_UP, K_w]:
+        if e.type == KEYDOWN and e.key in KEYS_UP():
             self.set_selected_parts((self.selected_row - 1, self.selected_collum))
 
-        if e.type == KEYDOWN and e.key in [K_DOWN, K_s]:
+        if e.type == KEYDOWN and e.key in KEYS_DOWN():
             self.set_selected_parts((self.selected_row + 1, self.selected_collum))
 
         if e.type == JOYAXISMOTION:

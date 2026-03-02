@@ -17,6 +17,8 @@ import time
 
 from pygame.locals import *
 from .const import data_dir
+# User-configurable master volume multipliers (music / sfx / mute).
+from . import settings as _settings
 
 SOUND_PATH = data_dir("sounds")
 
@@ -188,7 +190,11 @@ class SoundManager:
 
             elif self.chans[name]:
                 # self.chans[name].set_volume(vol_l, vol_r)
-                self.chans[name].set_volume(vol_l)
+                # Scale by the user-configured SFX master volume so
+                # the in-game Options slider affects every effect
+                # without having to hunt down every .Play() call.
+                master = _settings.sfx_volume()
+                self.chans[name].set_volume(vol_l * master)
 
     def Update(self, elapsed_time):
         """ """
@@ -232,7 +238,8 @@ class SoundManager:
             return
 
         music.play(-1)
-        music.set_volume(1.0)
+        # Honour the user-configured music volume (and mute flag).
+        music.set_volume(_settings.music_volume())
 
     def PauseMusic(self):
         self._unp_PauseMusic(1)

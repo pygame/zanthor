@@ -38,6 +38,12 @@ class Level:
             if pygame.mixer:
                 pygame.mixer.music.load(data_dir("intro", music))
                 pygame.mixer.music.play(-1)
+                # Honour the user-configured music volume.
+                try:
+                    from . import settings
+                    pygame.mixer.music.set_volume(settings.music_volume())
+                except Exception:
+                    pass
 
         tdata = {
             0x01: ("castle", tiles.tile_coal, None),
@@ -539,7 +545,7 @@ class Level:
 
         self.tv.castle.event(self.tv, e)
 
-        if e.type == KEYDOWN and e.key in (K_RETURN, K_p, K_h):
+        if e.type == KEYDOWN and e.key in KEYS_PAUSE():
             from . import states
 
             return states.Pause(self.game, "pause", self)
@@ -569,7 +575,7 @@ class Level:
             self.game.data["levels"].append(self.round)
             return states.GameWon(self.game)
 
-        if e.type == KEYDOWN and e.key in [K_m]:
+        if e.type == KEYDOWN and e.key in KEYS_TOGGLE_MOUSELOOK():
             const.DISABLE_MOUSE_LOOK = not const.DISABLE_MOUSE_LOOK
 
         # bound the mouse position

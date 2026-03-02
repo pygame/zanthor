@@ -199,6 +199,12 @@ class GameWon(engine.State):
         if pygame.mixer:
             pygame.mixer.music.load(data_dir("intro", "grass.ogg"))
             pygame.mixer.music.play(-1)
+            # Honour the user-configured music volume.
+            try:
+                from . import settings
+                pygame.mixer.music.set_volume(settings.music_volume())
+            except Exception:
+                pass
 
     def paint(self, screen):
         # screen.blit(self.bkgr,(0,0))

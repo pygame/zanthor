@@ -36,6 +36,8 @@ from .pgu import engine
 from .pgu import timer
 
 from .const import *
+# User settings: fullscreen / intro-skip flags, etc.
+from . import settings as _settings
 
 if 0:
     # this can be used to figure out how big the desktop is...
@@ -206,6 +208,10 @@ def main():
     the_level = None
     # flags ^= FULLSCREEN
     flags = 0
+    # Pull fullscreen from the user settings file; sys.argv can still
+    # force-toggle it for quick debugging.
+    if _settings.fullscreen():
+        flags |= FULLSCREEN
     if "fullscreen" in sys.argv or "full" in sys.argv:
         flags ^= FULLSCREEN
 
@@ -220,6 +226,12 @@ def main():
         no_intro = 3
     else:
         no_intro = 0
+
+    # Allow the user settings to skip the intro even without a CLI flag.
+    # CLI arguments still win – only apply if no_intro is still at its
+    # default value.
+    if no_intro == 0 and _settings.skip_intro():
+        no_intro = 1
 
     # jump to any level by specifying, e.g. "level8.tga"
     for fname in sys.argv:
